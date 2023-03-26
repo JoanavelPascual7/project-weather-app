@@ -9,7 +9,7 @@ li {
 }
 
 .container{
-    border: 3px solid black;
+    
     width: 63.5%;
 }
 .upper-box{
@@ -18,32 +18,42 @@ li {
     display: flex;
     flex-direction: column;
     background-color: teal;
-    color: white;
+    color: black;
 }
 
 
 .upper-box-items {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: flex-end; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-.upper-box-item{
-margin: 8px;
+.upper-box-item:not(:last-child){
+    margin-right: 10px;
 }
 
 .bottom-box{
-/* border: 3px solid black; */
-display: grid;
-grid-template-columns: 70% 30%;
+    border: 3px solid purple;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    align-items: end;
 }
 
 .Weather-box{
-    border: 3px solid black;
+    border: 3px solid orange;
     display: flex;
     flex-direction: column;
 }
 
 .previous-searches{
-    border: 3px solid black;
+    
+}
+
+.main-title{
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    border: 3px solid limegreen;
 }

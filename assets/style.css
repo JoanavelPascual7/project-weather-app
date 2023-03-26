@@ -17,24 +17,23 @@ li {
     border: 3px solid black;
     display: flex;
     flex-direction: column;
+    background-color: teal;
+    color: white;
 }
 
-.bottom-box{
-    border: 3px solid black;
-}
 
 .upper-box-items {
-    border: 3px solid salmon;
     display: flex;
     flex-direction: row;
-}
+    align-items: flex-end;
+  }
 
 .upper-box-item{
 margin: 8px;
 }
 
 .bottom-box{
-border: 3px solid black;
+/* border: 3px solid black; */
 display: grid;
 grid-template-columns: 70% 30%;
 }

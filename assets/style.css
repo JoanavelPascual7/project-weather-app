@@ -55,5 +55,21 @@ li {
 .main-title{
     font-family: 'Open Sans', sans-serif;
     color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    padding: 1rem;
     border: 3px solid limegreen;
 }
+
+.upper-box-item-button{
+  background-color: lightgrey;  
+  color: black 6px;
+  border: double;
+  border-width: thin;
+  border-color: black;
+  border-radius: 3px;
+}
+
+.upper-box-item-button:active {
+    background-color: darkslategray;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+  }

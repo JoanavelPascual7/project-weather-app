@@ -131,7 +131,9 @@ body {
     border-color: black;
     border-radius: 3px;
     size: 32px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
   }
+  
   
   .upper-box-item-button:active {
       background-color: slategray;
@@ -141,3 +143,11 @@ body {
     .upper-box-item-button:hover {
       background-color: slategrey
     }
+
+    .input-box {
+        border: 3px solid black;
+        border-radius: 5px;
+        box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.3);
+        padding: 10px;
+        margin-right: 10px;       
+      }

@@ -3,7 +3,7 @@ const cityInput = document.getElementById("city-input");
 const previousSearches = document.querySelector(".previous-searches");
 
 const getWeatherData = (cityName) => {
-  let url = `https://wttr.in/${cityName.replace(" ", "+")}?format=j1`;
+  let url = `https://wttr.in/${encodeURIComponent(cityName)}?format=j1`;
   return fetch(url)
     .then((response) => {
       return response.json();
@@ -23,22 +23,28 @@ const updateWeatherBox = (json, cityName) => {
   let areaName = json.nearest_area[0].areaName[0].value;
   let area = document.createElement("li");
   area.innerHTML = `<strong>Area:</strong> ${areaName}`;
-  weatherBox.append(area);
 
   let regionName = json.nearest_area[0].region[0].value;
   let region = document.createElement("li");
   region.innerHTML = `<strong>Region:</strong> ${regionName}`;
-  weatherBox.append(region);
 
   let countryName = json.nearest_area[0].country[0].value;
   let country = document.createElement("li");
   country.innerHTML = `<strong>Country:</strong> ${countryName}`;
-  weatherBox.append(country);
 
   let temperatureValue = json.current_condition[0].FeelsLikeF;
   let temperature = document.createElement("li");
   temperature.innerHTML = `<strong>Currently:</strong> ${temperatureValue}°F`;
-  weatherBox.append(temperature);
+
+  let ul = document.createElement("ul");
+  ul.classList.add("no-bullet");
+  ul.append(area, region, country, temperature);
+
+  weatherBox.append(ul);
+
+  let previousSearch = document.createElement("li");
+  previousSearch.textContent = cityName;
+  previousSearches.append(previousSearch);
 };
 
 const handleSearch = () => {
@@ -49,16 +55,11 @@ const handleSearch = () => {
   getWeatherData(cityName)
     .then((json) => {
       updateWeatherBox(json, cityName);
-      
-      let searchItem = document.createElement("li");
-      searchItem.textContent = cityName;
-      previousSearches.removeChild(previousSearches.lastElementChild);
-      previousSearches.prepend(searchItem);
+      cityInput.value = "";
     })
     .catch((error) => {
       console.error("Error:", error);
-      weatherBox.textContent = `Unable to get weather data for ${cityName}.`;
     });
-};
+  };
 
-document.querySelector(".upper-box button").addEventListener("click", handleSearch);
+document.querySelector("button").addEventListener("click", handleSearch);

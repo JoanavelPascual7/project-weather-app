@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="assets/style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Roboto:wght@500&display=swap" rel="stylesheet">
-
-    <title>Weather App</title>   
-</head>
-<body>
-    <div class= "container"> 
-        <div class="upper-box"> 
-            <h1 class="main-title">Weather App</h1>
-            <ul class="upper-box-items">
-                <li class="upper-box-item">Pick a location</li>
-                <input type="text" id="city-input">
-                <button class="upper-box-item-button">Get Weather</button>
-            </ul>
-        </div>
-        <div class="bottom-box">
-            <div class= "Weather-box" id ="Weather-box">Choose a location to view the weather,</div>
-            <ul class="previous-searches">
-                <h3>Previous Searches</h3>
-                <li>No previous searches.</li>
-            </ul>
-        </div>
-    </div> 
-</body>
-<script defer src="assets/script.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <title>Weather App</title>
+  </head>
+  <div class="real-upper-box">
+  <body class="page-container">
+    <header class="top-box-container">
+      <h1 class="title">Weather App</h1>
+      <div class="upper-box">
+        <label for="search-input">Pick a Location:</label>
+        <input type="text" id="city-input" />
+        <button class = "upper-box-item-button">Search</button>
+      </div>
+    </div>
+    </header>
+    <div class="container">
+      <aside id="temperature-widget"></aside>
+      <main>
+        <article id="Weather-box"></article>
+        <aside>
+          <article></article>
+          <article></article>
+          <article></article>
+        </aside>
+      </main>
+      <aside>
+        <section>
+          <h4>Previous Searches</h4>
+          <ul class="previous-searches"></ul>
+        </section>
+      </aside>
+    </div>
+    <script defer src="assets/script.js"></script>
+  </body>
 </html>
- 

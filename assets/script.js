@@ -3,52 +3,76 @@ const cityInput = document.getElementById("city-input");
 const previousSearches = document.querySelector(".previous-searches");
 
 const getWeatherData = (cityName) => {
-  let url = `https://wttr.in/${encodeURIComponent(cityName)}?format=j1`;
+  const url = `https://wttr.in/${encodeURIComponent(cityName)}?format=j1`;
   return fetch(url)
-    .then((response) => {
-      return response.json();
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+    .then((response) => response.json())
+    .catch((error) => console.error("Error:", error));
 };
 
 const updateWeatherBox = (json, cityName) => {
   weatherBox.innerHTML = "";
 
-  let label = document.createElement("h3");
+  const label = document.createElement("h3");
   label.textContent = cityName;
   weatherBox.append(label);
 
-  let areaName = json.nearest_area[0].areaName[0].value;
-  let area = document.createElement("li");
-  area.innerHTML = `<strong>Area:</strong> ${areaName}`;
+  const nearestArea = json.nearest_area[0].areaName[0].value;
+  let areaLabel = "Area";
+  
+  if (!nearestArea.toLowerCase().includes(cityName.toLowerCase())) {
+    areaLabel = "Nearest Area";
+  }
 
-  let regionName = json.nearest_area[0].region[0].value;
-  let region = document.createElement("li");
+  const area = document.createElement("li");
+  area.innerHTML = `<strong>${areaLabel}:</strong> ${nearestArea}`;
+
+  const regionName = json.nearest_area[0].region[0].value;
+  const region = document.createElement("li");
   region.innerHTML = `<strong>Region:</strong> ${regionName}`;
 
-  let countryName = json.nearest_area[0].country[0].value;
-  let country = document.createElement("li");
+  const countryName = json.nearest_area[0].country[0].value;
+  const country = document.createElement("li");
   country.innerHTML = `<strong>Country:</strong> ${countryName}`;
 
-  let temperatureValue = json.current_condition[0].FeelsLikeF;
-  let temperature = document.createElement("li");
+  const temperatureValue = json.current_condition[0].FeelsLikeF;
+  const temperature = document.createElement("li");
   temperature.innerHTML = `<strong>Currently:</strong> ${temperatureValue}°F`;
 
-  let ul = document.createElement("ul");
+  const chanceOfSunshineValue = json.weather[0].hourly[0].chanceofsunshine;
+  const chanceOfRainValue = json.weather[0].hourly[0].chanceofrain;
+  const chanceOfSnowValue = json.weather[0].hourly[0].chanceofsnow;
+
+  let iconUrl = "";
+  let altText = "";
+
+  if (chanceOfSunshineValue > 50) {
+    iconUrl = "assets/icons8-summer.gif";
+    altText = "sun";
+  } else if (chanceOfRainValue > 50) {
+    iconUrl = "assets/icons8-torrential-rain.gif";
+    altText = "rain";
+  } else if (chanceOfSnowValue > 50) {
+    iconUrl = "assets/icons8-light-snow.gif";
+    altText = "snow";
+  }
+
+  const icon = document.createElement("img");
+  icon.src = iconUrl;
+  icon.alt = altText;
+
+  const ul = document.createElement("ul");
   ul.classList.add("no-bullet");
-  ul.append(area, region, country, temperature);
+  ul.append(area, region, country, temperature, icon);
 
   weatherBox.append(ul);
 
-  let previousSearch = document.createElement("li");
+  const previousSearch = document.createElement("li");
   previousSearch.textContent = cityName;
   previousSearches.append(previousSearch);
 };
 
 const handleSearch = () => {
-  let cityName = cityInput.value.trim();
+  const cityName = cityInput.value.trim();
   if (cityName === "") {
     return;
   }
@@ -57,9 +81,7 @@ const handleSearch = () => {
       updateWeatherBox(json, cityName);
       cityInput.value = "";
     })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-  };
+    .catch((error) => console.error("Error:", error));
+};
 
-document.querySelector("button").addEventListener("click", handleSearch);
+document.getElementById("search-button").addEventListener("click", handleSearch);

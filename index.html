@@ -1,50 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <title>My Weather App</title>
     <link rel="stylesheet" href="assets/style.css" />
-    <title>Weather App</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Roboto:wght@500&display=swap" rel="stylesheet">
+
   </head>
-  <body class="page-container">
-    <header class="top-box-container">
-      <h1 class="title">Weather App</h1>
-      <div class="upper-box">
-        <label for="search-input">Pick a Location:</label>
-        <input class="input-box" type="text" id="city-input" />
-        <button id="search-button" class="upper-box-item-button">Search</button>
-      </div>
+  <body>
+    <header>
+      <div class="top-box"></div>
+      <h1 class="title">My Weather App</h1>
+      <form class ="search-bar">
+        <label class="pick-text" for="search">Pick a location:</label>
+        <input type="text" id="search" name="search">
+        <input type="submit" class="submit-button" value="submit">
+      </form>
+    </div>
     </header>
-    <div class="container">
-      <aside id="temperature-widget">
-        <form>
-          <label for="temp-to-convert">Convert the temperature:</label>
-          <input type="number" id="temp-to-convert">
-          <label for="to-c">
-            <input type="radio" id="to-c" name="convert-temp" value="c">to C
-          </label>
-          <label for="to-f">
-            <input type="radio" id="to-f" name="convert-temp" value="f">to F
-          </label>
-          <input type="submit">
-          <h4 id="temperature-result"></h4>
-        </form>
-      </aside>
-      <main>
-        <article id="Weather-box"></article>
-        <aside>
-          <article></article>
-          <article></article>
-          <article></article>
-        </aside>
-      </main>
-      <aside>
-        <section>
+    <main class="Weather-box">
+      <article></article>
+      <aside class="conversion-widget"></aside>
+      <aside class="weather-history">
+        <section class = "previous-searches">
           <h4>Previous Searches</h4>
-          <ul class="previous-searches"></ul>
+          <ul>
+            <p>No prior searches</p>
+          </ul>
         </section>
       </aside>
+    </main>
+    <div class="upcoming-weather">
+      <section class="today">Today</section>
+      <section class="tomorrow">Tomorrow</section>
+      <section class="day-after-tomorrow">Day After Tomorrow</section>
     </div>
     <script defer src="assets/script.js"></script>
   </body>

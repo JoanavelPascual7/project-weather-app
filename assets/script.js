@@ -1,6 +1,6 @@
-const weatherBox = document.getElementById("Weather-box");
-const cityInput = document.getElementById("city-input");
-const previousSearches = document.querySelector(".previous-searches");
+const weatherBox = document.querySelector(".Weather-box article");
+const cityInput = document.getElementById("search");
+const previousSearches = document.querySelector(".previous-searches ul");
 
 const getWeatherData = (cityName) => {
   const url = `https://wttr.in/${encodeURIComponent(cityName)}?format=j1`;
@@ -18,7 +18,7 @@ const updateWeatherBox = (json, cityName) => {
 
   const nearestArea = json.nearest_area[0].areaName[0].value;
   let areaLabel = "Area";
-  
+
   if (!nearestArea.toLowerCase().includes(cityName.toLowerCase())) {
     areaLabel = "Nearest Area";
   }
@@ -71,7 +71,8 @@ const updateWeatherBox = (json, cityName) => {
   previousSearches.append(previousSearch);
 };
 
-const handleSearch = () => {
+const handleSearch = (event) => {
+  event.preventDefault();
   const cityName = cityInput.value.trim();
   if (cityName === "") {
     return;
@@ -84,4 +85,4 @@ const handleSearch = () => {
     .catch((error) => console.error("Error:", error));
 };
 
-document.getElementById("search-button").addEventListener("click", handleSearch);
+document.querySelector("form").addEventListener("submit", handleSearch);

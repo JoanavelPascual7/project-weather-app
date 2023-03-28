@@ -26,6 +26,14 @@ const updateWeatherBox = (json, cityName) => {
   const area = document.createElement("li");
   area.innerHTML = `<strong>${areaLabel}:</strong> ${nearestArea}`;
 
+  // Add handling for imperfect location matching
+  const mismatch = json.nearest_area[0].areaName[0].matchLevel;
+  if (mismatch && mismatch.toLowerCase() !== "exact") {
+    const mismatchLabel = document.createElement("li");
+    mismatchLabel.innerHTML = `<strong>Mismatch:</strong> ${mismatch}`;
+    area.insertAdjacentElement("afterend", mismatchLabel);
+  }
+
   const regionName = json.nearest_area[0].region[0].value;
   const region = document.createElement("li");
   region.innerHTML = `<strong>Region:</strong> ${regionName}`;
@@ -41,6 +49,15 @@ const updateWeatherBox = (json, cityName) => {
   const chanceOfSunshineValue = json.weather[0].hourly[0].chanceofsunshine;
   const chanceOfRainValue = json.weather[0].hourly[0].chanceofrain;
   const chanceOfSnowValue = json.weather[0].hourly[0].chanceofsnow;
+
+  const chanceOfSunshine = document.createElement("li");
+  chanceOfSunshine.innerHTML = `<strong>Chance of Sunshine:</strong> ${chanceOfSunshineValue}%`;
+
+  const chanceOfRain = document.createElement("li");
+  chanceOfRain.innerHTML = `<strong>Chance of Rain:</strong> ${chanceOfRainValue}%`;
+
+  const chanceOfSnow = document.createElement("li");
+  chanceOfSnow.innerHTML = `<strong>Chance of Snow:</strong> ${chanceOfSnowValue}%`;
 
   let iconUrl = "";
   let altText = "";
@@ -62,14 +79,125 @@ const updateWeatherBox = (json, cityName) => {
 
   const ul = document.createElement("ul");
   ul.classList.add("no-bullet");
-  ul.append(area, region, country, temperature, icon);
+  ul.append(area, region, country, temperature, chanceOfSunshine, chanceOfRain, chanceOfSnow, icon);
 
   weatherBox.append(ul);
 
   const previousSearch = document.createElement("li");
   previousSearch.textContent = cityName;
   previousSearches.append(previousSearch);
+
+
+
+
+  updateUpcomingWeather(json);
 };
+
+const updateUpcomingWeather = (json) => {
+  const upcomingWeather = document.querySelector(".upcoming-weather");
+  const todaySection = upcomingWeather.querySelector(".today");
+  const tomorrowSection = upcomingWeather.querySelector(".tomorrow");
+  const dayAfterTomorrowSection = upcomingWeather.querySelector(".day-after-tomorrow");
+
+  // Today's weather data
+  const currentTemperature = json.current_condition[0].FeelsLikeF;
+  const todayMinTemperature = json.weather[0].mintempF;
+  const todayMaxTemperature = json.weather[0].maxtempF;
+  todaySection.innerHTML = `
+    Today<br>
+    Average Temperature: ${currentTemperature}°F<br>
+    Min Temperature: ${todayMinTemperature}°F<br>
+    Max Temperature: ${todayMaxTemperature}°F
+  `;
+
+  // Tomorrow's weather data
+  const tomorrowTemperature = json.weather[1].avgtempF;
+  const tomorrowMinTemperature = json.weather[1].mintempF;
+  const tomorrowMaxTemperature = json.weather[1].maxtempF;
+  tomorrowSection.innerHTML = `
+    Tomorrow<br>
+    Average Temperature: ${tomorrowTemperature}°F<br>
+    Min Temperature: ${tomorrowMinTemperature}°F<br>
+    Max Temperature: ${tomorrowMaxTemperature}°F
+  `;
+
+  // Day after tomorrow's weather data
+  const dayAfterTomorrowTemperature = json.weather[2].avgtempF;
+  const dayAfterTomorrowMinTemperature = json.weather[2].mintempF;
+  const dayAfterTomorrowMaxTemperature = json.weather[2].maxtempF;
+  dayAfterTomorrowSection.innerHTML = `
+    Day After Tomorrow<br>
+    Average Temperature: ${dayAfterTomorrowTemperature}°F<br>
+    Min Temperature: ${dayAfterTomorrowMinTemperature}°F<br>
+    Max Temperature: ${dayAfterTomorrowMaxTemperature}°F
+  `;
+};
+
+
+const convertTemperature = (temperature, toCelsius) => {
+  if (toCelsius) {
+    return (temperature - 32) * 5 / 9;
+  } else {
+    return temperature * 9 / 5 + 32;
+  }
+};
+
+const handleTemperatureConversion = (event) => {
+  event.preventDefault();
+  const temperatureInput = document.getElementById("temp-to-convert");
+  const temperatureValue = temperatureInput.value;
+
+  const toCelsiusRadio = document.getElementById("to-c");
+  const toCelsius = toCelsiusRadio.checked;
+
+  const convertedTemperature = convertTemperature(temperatureValue, toCelsius);
+  const result = document.createElement("h4");
+  result.textContent = `${temperatureValue}${toCelsius ? "°F" : "°C"} is ${convertedTemperature.toFixed(2)}${toCelsius ? "°C" : "°F"}`;
+
+  weatherBox.appendChild(result);
+};
+
+const temperatureForm = document.createElement("form");
+const temperatureLabel = document.createElement("label");
+temperatureLabel.textContent = "Convert the temperature:";
+temperatureForm.appendChild(temperatureLabel);
+
+const temperatureInput = document.createElement("input");
+temperatureInput.type = "number";
+temperatureInput.id = "temp-to-convert";
+temperatureForm.appendChild(temperatureInput);
+
+const toCelsiusLabel = document.createElement("label");
+toCelsiusLabel.textContent = "to C";
+temperatureForm.appendChild(toCelsiusLabel);
+
+const toCelsiusRadio = document.createElement("input");
+toCelsiusRadio.type = "radio";
+toCelsiusRadio.id = "to-c";
+toCelsiusRadio.name = "convert-temp";
+toCelsiusRadio.value = "c";
+temperatureForm.appendChild(toCelsiusRadio);
+
+const toFahrenheitLabel = document.createElement("label");
+toFahrenheitLabel.textContent = "to F";
+temperatureForm.appendChild(toFahrenheitLabel);
+
+const toFahrenheitRadio = document.createElement("input");
+toFahrenheitRadio.type = "radio";
+toFahrenheitRadio.id = "to-f";
+toFahrenheitRadio.name = "convert-temp";
+toFahrenheitRadio.value = "f";
+temperatureForm.appendChild(toFahrenheitRadio);
+
+const submitButton = document.createElement("input");
+submitButton.type = "submit";
+temperatureForm.appendChild(submitButton);
+
+temperatureForm.addEventListener("submit", handleTemperatureConversion);
+weatherBox.appendChild(temperatureForm);
+
+
+
 
 const handleSearch = (event) => {
   event.preventDefault();

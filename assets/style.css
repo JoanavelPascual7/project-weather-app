@@ -1,115 +1,121 @@
 .Weather-box {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    grid-template-rows: 1fr;
-    gap: 20px;
-    justify-items: center;
-  }
-  
-  .Weather-box article {
-    grid-column: 1 / span 1;
-    grid-row: 1 / span 1;
-  }
-  
-  .Weather-box .conversion-widget {
-    grid-column: 2 / span 1;
-    grid-row: 1 / span 1;
-  }
-  
-  .Weather-box .weather-history {
-    grid-column: 2 / span 1;
-    grid-row: 1 / span 1;
-  }
-  
-  .Weather-box .previous-searches {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  
-  .upcoming-weather {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
-    gap: 10px;
-    justify-items: center;
-    margin-top: 20px;
-  }
-  
-  .upcoming-weather section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: none; 
-    padding: 5px 0; 
-    font-size: 20px;
-    text-align: center;
-    margin: 0; 
-  }
-
-  .top-box {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .title {
-    text-align: center;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 32px;
-    color: white;
-    text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
-  }
-
-  .search-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .submit-button{
-    background-color: lightgrey;  
-    color: black 6px;
-    border: double;
-    border-width: thin;
-    border-color: black;
-    border-radius: 3px;
-    size: 32px;
-    box-shadow: 4px 4px 8px rgba(0,0,0,0.4);
-  }
-
-  .pick-text {
-    font-size: 1.2em;
-    text-shadow: 2px;
-  }
-
-header{
-    background-color: rgb(6, 111, 111);
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-template-rows: 1fr;
+  gap: 20px;
+  justify-items: center;
 }
 
-  .title{
-    border: 3px solid salmon;
-  }
+.Weather-box article {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
 
-  .top-box {
-    border: 3px solid red;
-  }
+.Weather-box .conversion-widget {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+}
 
-  .search-bar{
-    border: 3px solid blue;
-  }
+.Weather-box .weather-history {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+}
 
-  .Weather-box{
-    border: 3px solid rgb(6, 111, 111);
-    background-color: whitesmoke;
-    padding: 100px;
-  }
+.Weather-box .previous-searches {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
 
-  .previous-searches{
-    border: 3px solid orange
-  }
+.upcoming-weather {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  gap: 10px;
+  justify-items: center;
+  margin-top: 20px;
+}
 
-  .upcoming-weather{
-    border: 3px solid rgb(6, 111, 111);
+.upcoming-weather section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none; 
+  padding: 5px 0; 
+  font-size: 20px;
+  text-align: center;
+  margin: 0; 
+}
+
+.top-box {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 32px;
+  color: white;
+  text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit-button{
+  background-color: lightgrey;  
+  color: black 6px;
+  border: double;
+  border-width: thin;
+  border-color: black;
+  border-radius: 3px;
+  size: 32px;
+  box-shadow: 4px 4px 8px rgba(0,0,0,0.4);
+}
+
+.pick-text {
+  font-size: 1.2em;
+  text-shadow: 2px;
+}
+
+header{
+  background-color: rgb(6, 111, 111);
+}
+
+.title{
+  border: 3px solid salmon;
+}
+
+.top-box {
+  border: 3px solid red;
+}
+
+.search-bar{
+  border: 3px solid blue;
+}
+
+.Weather-box{
+  border: 3px solid rgb(6, 111, 111);
+  background-color: whitesmoke;
+  padding: 100px;
+}
+
+.previous-searches{
+  border: 3px solid orange
+}
+
+.upcoming-weather{
+  border: 3px solid rgb(6, 111, 111);
+}
+
+#temperature-widget {
+  position: fixed;
+  top: 0;
+  left: 0;
 }

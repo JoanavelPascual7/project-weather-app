@@ -5,12 +5,21 @@
   grid-template-rows: 1fr;
   gap: 20px;
   justify-items: center;
+  padding: 20px;
 }
 
 .Weather-box article {
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
-  border: 3px solid limegreen
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+}
+
+.Weather-box article h3 {
+  margin-top: 0;
 }
 
 .Weather-box .conversion-widget {
@@ -30,7 +39,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border: 3px solid hotpink
+  border: 3px solid hotpink;
+  background-color: whitesmoke;
 }
 
 .upcoming-weather {
@@ -151,7 +161,7 @@ header{
 
 .Weather-box{
   border: 3px solid rgb(6, 111, 111);
-  background-color: whitesmoke;
+  background-color: white
   padding: 100px;
 }
 
@@ -193,5 +203,19 @@ header{
 .space{
   padding-top: 15px;
   padding-bottom: 15px;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+li {
+  list-style: none;
+}
+
+.conversion-widget-final-resting-place {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 

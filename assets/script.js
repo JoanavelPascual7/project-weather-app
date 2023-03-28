@@ -131,6 +131,21 @@ const updateUpcomingWeather = (json) => {
   `;
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const convertTemperature = (temperature, toCelsius) => {
   if (toCelsius) {
     return (temperature - 32) * 5 / 9;
@@ -151,7 +166,8 @@ const handleTemperatureConversion = (event) => {
   const result = document.createElement("h4");
   result.textContent = `${temperatureValue}${toCelsius ? "°F" : "°C"} is ${convertedTemperature.toFixed(2)}${toCelsius ? "°C" : "°F"}`;
 
-  weatherBox.appendChild(result);
+  const conversionWidgetFinalRestingPlace = document.querySelector(".conversion-widget-final-resting-place");
+  conversionWidgetFinalRestingPlace.appendChild(result);
 };
 
 //Conversion Row 
@@ -192,7 +208,23 @@ submitButton.type = "submit";
 temperatureForm.appendChild(submitButton);
 
 temperatureForm.addEventListener("submit", handleTemperatureConversion);
-weatherBox.appendChild(temperatureForm);
+
+const conversionWidgetFinalRestingPlace = document.querySelector(".conversion-widget-final-resting-place");
+conversionWidgetFinalRestingPlace.appendChild(temperatureForm);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const searchHistory = [];

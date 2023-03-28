@@ -154,6 +154,7 @@ const handleTemperatureConversion = (event) => {
   weatherBox.appendChild(result);
 };
 
+//Conversion Row 
 const temperatureForm = document.createElement("form");
 const temperatureLabel = document.createElement("label");
 temperatureLabel.textContent = "Convert the temperature:";
@@ -194,8 +195,7 @@ temperatureForm.addEventListener("submit", handleTemperatureConversion);
 weatherBox.appendChild(temperatureForm);
 
 
-
-
+const searchHistory = [];
 
 const handleSearch = (event) => {
   event.preventDefault();
@@ -207,8 +207,26 @@ const handleSearch = (event) => {
     .then((json) => {
       updateWeatherBox(json, cityName);
       cityInput.value = "";
+      searchHistory.push(cityName);
+      updateSearchHistory();
     })
     .catch((error) => console.error("Error:", error));
+};
+
+const updateSearchHistory = () => {
+  const searchList = document.querySelector(".previous-searches ul");
+  searchList.innerHTML = "";
+  if (searchHistory.length === 0) {
+    const message = document.createElement("li");
+    message.textContent = "No searches yet";
+    searchList.appendChild(message);
+  } else {
+    for (const search of searchHistory) {
+      const item = document.createElement("li");
+      item.textContent = search;
+      searchList.appendChild(item);
+    }
+  }
 };
 
 document.querySelector("form").addEventListener("submit", handleSearch);

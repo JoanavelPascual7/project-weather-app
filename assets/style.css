@@ -1,3 +1,4 @@
+
 .Weather-box {
   display: grid;
   grid-template-columns: 1fr 300px;
@@ -9,16 +10,19 @@
 .Weather-box article {
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
+  border: 3px solid limegreen
 }
 
 .Weather-box .conversion-widget {
   grid-column: 2 / span 1;
   grid-row: 1 / span 1;
+  border: 3px solid rgb(114, 248, 250);
 }
 
 .Weather-box .weather-history {
   grid-column: 2 / span 1;
   grid-row: 1 / span 1;
+  border: 3px solid salmon;
 }
 
 .Weather-box .previous-searches {
@@ -26,6 +30,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  border: 3px solid hotpink
 }
 
 .upcoming-weather {
@@ -57,10 +62,12 @@
 .title {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
-  font-size: 32px;
+  font-size: 42px;
   color: white;
-  text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+  text-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+
 }
+
 
 .search-bar {
   display: flex;
@@ -68,16 +75,49 @@
   align-items: center;
 }
 
-.submit-button{
-  background-color: lightgrey;  
-  color: black 6px;
+.submit-button {
+  background-color: lightgrey;
+  color: black;
   border: double;
   border-width: thin;
   border-color: black;
   border-radius: 3px;
-  size: 32px;
-  box-shadow: 4px 4px 8px rgba(0,0,0,0.4);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease-in-out;
 }
+
+.submit-button:hover {
+  background-color: darkgrey;
+  border: solid;
+  border-width: thin;
+  border-color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  transform: translateY(1px);
+}
+
+.submit-button:active {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.1s ease-in-out;
+}
+
+#search {
+  width: 200px;
+  height: 30px;
+  padding: 5px 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 4px 4px 12px
+}
+
+#search:focus {
+  border-color: #66afe9;
+  box-shadow: 0px 0px 5px #66afe9;
+  outline: none;
+}
+
 
 .pick-text {
   font-size: 1.2em;
@@ -86,18 +126,27 @@
 
 header{
   background-color: rgb(6, 111, 111);
+  padding-bottom: 10px;
 }
 
-.title{
-  border: 3px solid salmon;
-}
 
 .top-box {
   border: 3px solid red;
+  margin-bottom: 10px;
 }
 
 .search-bar{
   border: 3px solid blue;
+  margin-top: 0;
+}
+
+.search-bar input[type="text"] {
+  margin-right: 10px; 
+  margin-left: 10px;
+}
+
+.search-bar input[type="submit"] {
+  margin-left: 10px;
 }
 
 .Weather-box{
@@ -106,8 +155,29 @@ header{
   padding: 100px;
 }
 
-.previous-searches{
-  border: 3px solid orange
+.previous-searches {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid orange;
+  padding: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+
+}
+
+.previous-searches h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.previous-searches p {
+  margin: 0;
+  font-weight: normal;
 }
 
 .upcoming-weather{
@@ -119,3 +189,9 @@ header{
   top: 0;
   left: 0;
 }
+
+.space{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+

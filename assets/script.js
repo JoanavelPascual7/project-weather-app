@@ -26,7 +26,7 @@ const updateWeatherBox = (json, cityName) => {
   const area = document.createElement("li");
   area.innerHTML = `<strong>${areaLabel}:</strong> ${nearestArea}`;
 
-  // Add handling for imperfect location matching
+ 
   const mismatch = json.nearest_area[0].areaName[0].matchLevel;
   if (mismatch && mismatch.toLowerCase() !== "exact") {
     const mismatchLabel = document.createElement("li");
@@ -88,8 +88,6 @@ const updateWeatherBox = (json, cityName) => {
   previousSearches.append(previousSearch);
 
 
-
-
   updateUpcomingWeather(json);
 };
 
@@ -132,7 +130,6 @@ const updateUpcomingWeather = (json) => {
     Max Temperature: ${dayAfterTomorrowMaxTemperature}°F
   `;
 };
-
 
 const convertTemperature = (temperature, toCelsius) => {
   if (toCelsius) {
@@ -195,6 +192,7 @@ temperatureForm.appendChild(submitButton);
 
 temperatureForm.addEventListener("submit", handleTemperatureConversion);
 weatherBox.appendChild(temperatureForm);
+
 
 
 

@@ -133,19 +133,6 @@ const updateUpcomingWeather = (json) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 const convertTemperature = (temperature, toCelsius) => {
   if (toCelsius) {
     return (temperature - 32) * 5 / 9;
@@ -211,20 +198,7 @@ temperatureForm.addEventListener("submit", handleTemperatureConversion);
 
 const conversionWidgetFinalRestingPlace = document.querySelector(".conversion-widget-final-resting-place");
 conversionWidgetFinalRestingPlace.appendChild(temperatureForm);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Conversion Row End
 
 
 const searchHistory = [];

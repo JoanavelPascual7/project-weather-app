@@ -1,4 +1,4 @@
-
+/* Default styles */
 .Weather-box {
   display: grid;
   grid-template-columns: 1fr 300px;
@@ -31,7 +31,6 @@
 .Weather-box .weather-history {
   grid-column: 2 / span 1;
   grid-row: 1 / span 1;
-  border: 3px solid rgb(6, 111, 111);
   background-color: whitesmoke;
 }
 
@@ -40,9 +39,28 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  
   background-color: whitesmoke;
 }
+
+/* Media query for smaller devices */
+@media (max-width: 768px) {
+  .Weather-box {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    padding: 10px;
+  }
+
+  .Weather-box article {
+    margin-bottom: 20px;
+  }
+
+  .Weather-box .conversion-widget,
+  .Weather-box .weather-history,
+  .Weather-box .previous-searches {
+    width: 100%;
+  }
+}
+
 
 .upcoming-weather {
   display: grid;
@@ -130,6 +148,24 @@
 }
 
 
+@media screen and (max-width: 768px) {
+  .upcoming-weather {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  
+  .search-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .search-bar input[type="text"] {
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+}
+
+
 .pick-text {
   font-size: 1.2em;
   text-shadow: 2px;
@@ -159,7 +195,6 @@ header{
 }
 
 .Weather-box{
-  border: 3px solid rgb(6, 111, 111);
   background-color: white;
   padding: 100px;
 }
@@ -222,12 +257,69 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 15px;
 }
 
 .Weather-box {
   flex: 1;
+  border: 3px solid rgb(6, 111, 111);
 }
 
 .weather-history {
   flex: 0 0 auto;
+}
+
+.previous-searches {
+  border: 3px solid rgb(6, 111, 111);
+}
+
+.weatherbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.result-from-search {
+  margin-left: 90px;
+  margin-right: -120px;
+}
+
+@media screen and (max-width: 768px) {
+  .Weather-box {
+    padding: 50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .previous-searches {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #temperature-widget {
+    position: static;
+    margin-top: 20px;
+  }
+
+  .weather-box-previous-searches {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .weather-history {
+    margin-top: 20px;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .result-from-search {
+    margin-left: 20px;
+    margin-right: -50px;
+  }
 }

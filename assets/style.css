@@ -217,3 +217,17 @@ li {
   align-items: center;
 }
 
+
+.weather-box-previous-searches {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Weather-box {
+  flex: 1;
+}
+
+.weather-history {
+  flex: 0 0 auto;
+}
